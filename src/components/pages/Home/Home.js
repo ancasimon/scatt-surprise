@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import './Home.scss';
 
 class Home extends React.Component {
@@ -14,6 +16,8 @@ class Home extends React.Component {
       <div className="Home">
         <h1>Home Component</h1>
         <button className="btn btn-dark" onClick={this.editEvent}>Edit something</button>
+        <Link to='/scats/monekybutt1'>View Single Scat</Link>
+        <Link to='/new'>Record a New Scat</Link>
       </div>
     );
   }
