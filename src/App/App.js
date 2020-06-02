@@ -7,7 +7,6 @@ import Auth from '../components/pages/Auth/Auth';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 
 import fbConnection from '../helpers/data/connection';
-import firebaseApp from '../helpers/data/connection';
 
 fbConnection();
 
