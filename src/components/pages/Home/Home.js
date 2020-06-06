@@ -1,23 +1,39 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import ScatCard from '../../shared/ScatCard/ScatCard';
+
+import authData from '../../../helpers/data/authData';
+import scatsData from '../../../helpers/data/scatsData';
 
 import './Home.scss';
 
 class Home extends React.Component {
-  editEvent = (e) => {
-    e.preventDefault();
-    const scatId = '12345';
-    this.props.history.push(`/edit/${scatId}`);
+  state = {
+    scats: [],
+  }
+
+  getScats = () => {
+    const uid = authData.getUid();
+    scatsData.getScatsByUid(uid)
+      .then((scats) => this.setState({ scats }))
+      .catch((err) => console.error('unable to get scats: ', err));
+  }
+
+  componentDidMount() {
+    this.getScats();
   }
 
   render() {
+    const { scats } = this.state;
+    const buildScatCards = scats.map((scat) => (
+      <ScatCard key={scat.id} scat={scat} />
+    ));
     return (
       <div className="Home">
-        <h1>Home Component</h1>
-        <button className="btn btn-dark" onClick={this.editEvent}>Edit something</button>
-        <Link to='/scats/monekybutt1'>View Single Scat</Link>
-        <Link to='/new'>Record a New Scat</Link>
+        <h1>Home</h1>
+        <div className="d-flex flex-wrap">
+          {buildScatCards}
+        </div>
       </div>
     );
   }
