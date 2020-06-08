@@ -103,43 +103,43 @@ class NewScat extends React.Component {
 
         <form className="col-6 offset-3">
           <div className="form-group">
-            <label for="scat-location">Location</label>
+            <label htmlFor="scat-location">Location</label>
             <input type="text" className="form-control" id="scat-location" value={scatLocation} onChange={this.locationChange} />
           </div>
 
           <div className="form-group">
-            <label for="scat-color">Color</label>
+            <label htmlFor="scat-color">Color</label>
             <input type="text" className="form-control" id="scat-color" value={scatColor} onChange={this.colorChange} />
           </div>
 
           <div className="form-group">
-            <label for="scat-shape">Shape</label>
+            <label htmlFor="scat-shape">Shape</label>
             <input type="text" className="form-control" id="scat-shape" value={scatShape} onChange={this.shapeChange} />
           </div>
 
           <div className="form-group">
-            <label for="scat-size">Size</label>
+            <label htmlFor="scat-size">Size</label>
             <input type="text" className="form-control" id="scat-size" value={scatSize} onChange={this.sizeChange} />
           </div>
 
           <div className="form-group">
-            <label for="scat-temperature">Temperature</label>
+            <label htmlFor="scat-temperature">Temperature</label>
             <input type="number" className="form-control" id="scat-temperature" value={scatTemperature} onChange={this.temperatureChange} />
           </div>
 
           <div className="form-group">
-            <label for="scat-viscosity">Viscosity</label>
+            <label htmlFor="scat-viscosity">Viscosity</label>
             <input type="text" className="form-control" id="scat-viscosity" value={scatViscosity} onChange={this.viscosityChange} />
           </div>
 
           <div className="form-group">
-            <label for="scat-notes">Notes</label>
+            <label htmlFor="scat-notes">Notes</label>
             <input type="text" className="form-control" id="scat-notes" value={scatNotes} onChange={this.notesChange} />
           </div>
 
           <div className="form-group form-check">
             <input type="checkbox" className="form-check-input" id="scat-wasFulfilling" checked={scatWasFulfilling} onChange={this.wasFulfillingChange} />
-            <label className="form-check-label" for="scat-wasFulfilling">Was it fulfilling?</label>
+            <label className="form-check-label" htmlFor="scat-wasFulfilling">Was it fulfilling?</label>
           </div>
 
           <button type="submit" className="btn btn-primary" onClick={this.saveScat}>Save</button>
