@@ -11,11 +11,18 @@ class SingleScat extends React.Component {
   // Note: our scat object shape does not match (the object in this file does not include the id - like the shape in the scatSHape file - we have not pushed the id in here - but it doesn't matter because it is in state here; it is not props, so we don't need the shape)
 
   componentDidMount() {
-    // scatId is in our url - and thus in our params - we defiend it int he url and defined the variable name in the wildcard in the edit path in ASpp.js
+    // scatId is in our url - and thus in our params - we defined it in the url and defined the variable name in the wildcard in the edit path in ASpp.js
     const { scatId } = this.props.match.params;
     scatsData.getSingleScat(scatId)
       .then((response) => this.setState({ scat: response.data }))
       .catch((err) => console.error('unable to get single scat: ', err));
+  }
+
+  removeScat = () => {
+    const { scatId } = this.props.match.params;
+    scatsData.deleteScat(scatId)
+      .then(() => this.props.history.push('/home'))
+      .catch((err) => console.error('unable to delete scat from single view page', err));
   }
 
   render() {
@@ -23,6 +30,7 @@ class SingleScat extends React.Component {
 
     return (
       <div className="SingleScat" style={{ backgroundColor: scat.color }}>
+        <button class="btn btn-danger" onClick={this.removeScat}>Delete Scat Record</button>
         <h4>{scat.location}</h4>
         <h4>Notes: {scat.notes}</h4>
         <p>Shape: {scat.shape}</p>
