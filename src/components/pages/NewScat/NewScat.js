@@ -82,7 +82,7 @@ class NewScat extends React.Component {
     };
     scatsData.postScat(newScat)
       .then(() => this.props.history.push('/home'))
-      .catch((err) => console.error('unable to svae new scat: ', err));
+      .catch((err) => console.error('unable to save new scat: ', err));
   }
 
   render() {
@@ -101,44 +101,91 @@ class NewScat extends React.Component {
       <div className="NewScat col-12">
         <h1>New Scat Component</h1>
 
-        <form className="col-6 offset-3">
+        <form className="col-6 offset-3 text-left">
           <div className="form-group">
             <label htmlFor="scat-location">Location</label>
-            <input type="text" className="form-control" id="scat-location" value={scatLocation} onChange={this.locationChange} />
+            <input
+              type="text"
+              className="form-control"
+              id="scat-location"
+              value={scatLocation}
+              onChange={this.locationChange}
+            />
           </div>
 
           <div className="form-group">
             <label htmlFor="scat-color">Color</label>
-            <input type="text" className="form-control" id="scat-color" value={scatColor} onChange={this.colorChange} />
+            <input
+              type="text"
+              className="form-control"
+              id="scat-color"
+              value={scatColor}
+              onChange={this.colorChange}
+            />
           </div>
 
           <div className="form-group">
             <label htmlFor="scat-shape">Shape</label>
-            <input type="text" className="form-control" id="scat-shape" value={scatShape} onChange={this.shapeChange} />
+            <input
+              type="text"
+              className="form-control"
+              id="scat-shape"
+              value={scatShape}
+              onChange={this.shapeChange}
+            />
           </div>
 
           <div className="form-group">
             <label htmlFor="scat-size">Size</label>
-            <input type="text" className="form-control" id="scat-size" value={scatSize} onChange={this.sizeChange} />
+            <input
+              type="text"
+              className="form-control"
+              id="scat-size"
+              value={scatSize}
+              onChange={this.sizeChange}
+            />
           </div>
 
           <div className="form-group">
             <label htmlFor="scat-temperature">Temperature</label>
-            <input type="number" className="form-control" id="scat-temperature" value={scatTemperature} onChange={this.temperatureChange} />
+            <input
+              type="number"
+              className="form-control"
+              id="scat-temperature"
+              value={scatTemperature}
+              onChange={this.temperatureChange}
+            />
           </div>
 
           <div className="form-group">
             <label htmlFor="scat-viscosity">Viscosity</label>
-            <input type="text" className="form-control" id="scat-viscosity" value={scatViscosity} onChange={this.viscosityChange} />
+            <input
+              type="text"
+              className="form-control"
+              id="scat-viscosity"
+              value={scatViscosity}
+              onChange={this.viscosityChange}
+            />
           </div>
 
           <div className="form-group">
             <label htmlFor="scat-notes">Notes</label>
-            <input type="text" className="form-control" id="scat-notes" value={scatNotes} onChange={this.notesChange} />
+            <input
+              type="text"
+              className="form-control"
+              id="scat-notes"
+              value={scatNotes}
+              onChange={this.notesChange}
+            />
           </div>
 
           <div className="form-group form-check">
-            <input type="checkbox" className="form-check-input" id="scat-wasFulfilling" checked={scatWasFulfilling} onChange={this.wasFulfillingChange} />
+            <input type="checkbox"
+              className="form-check-input"
+              id="scat-wasFulfilling"
+              checked={scatWasFulfilling}
+              onChange={this.wasFulfillingChange}
+            />
             <label className="form-check-label" htmlFor="scat-wasFulfilling">Was it fulfilling?</label>
           </div>
 
