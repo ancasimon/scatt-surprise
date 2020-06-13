@@ -41,7 +41,7 @@ class MyNavbar extends React.Component {
 
     const buildNavbar = () => {
       const { authed } = this.props;
-      // we want to base this based on whether use is authenticated > so we need to pull in authed form the state in App.js > so we pass authed into MyNavbar component there > and then we have access to it here in props > we also need to defien prop types!
+      // we want to base this based on whether user is authenticated > so we need to pull in authed from the state in App.js > so we pass authed into MyNavbar component there > and then we have access to it here in props > we also need to define prop types!
       if (authed) {
         return (
           <Nav className="ml-auto" navbar>
