@@ -1,5 +1,8 @@
 import React from 'react';
 
+import authData from '../../../helpers/data/authData';
+import scatsData from '../../../helpers/data/scatsData';
+
 import './EditScat.scss';
 
 class EditScat extends React.Component {
@@ -12,6 +15,25 @@ class EditScat extends React.Component {
     scatViscosity: '',
     scatWasFulfilling: false,
     scatNotes: '',
+  }
+
+  componentDidMount() {
+    const editId = this.props.match.params.scatId;
+    scatsData.getSingleScat(editId)
+      .then((response) => {
+        const scat = response.data;
+        this.setState({
+          scatLocation: scat.location,
+          scatColor: scat.color,
+          scatShape: scat.shape,
+          scatSize: scat.size,
+          scatTemperature: scat.temperature,
+          scatViscosity: scat.viscosity,
+          scatWasFulfilling: scat.wasFulfilling,
+          scatNotes: scat.notes,
+        });
+      })
+      .catch((err) => console.error('unable to get scat to edit', err));
   }
 
   locationChange = (e) => {
@@ -54,6 +76,35 @@ class EditScat extends React.Component {
     this.setState({ scatWasFulfilling: e.target.checked });
   }
 
+  updateScat = (e) => {
+    e.preventDefault();
+    const { scatId } = this.props.match.params;
+    const {
+      scatLocation,
+      scatColor,
+      scatShape,
+      scatSize,
+      scatTemperature,
+      scatViscosity,
+      scatWasFulfilling,
+      scatNotes,
+    } = this.state;
+    const updatedScat = {
+      location: scatLocation,
+      color: scatColor,
+      shape: scatShape,
+      size: scatSize,
+      temperature: scatTemperature * 1,
+      viscosity: scatViscosity,
+      wasFulfilling: scatWasFulfilling,
+      notes: scatNotes,
+      uid: authData.getUid(),
+    };
+    scatsData.putScat(scatId, updatedScat)
+      .then(() => this.props.history.push('/home'))
+      .catch((err) => console.error('unable to edit scat: ', err));
+  }
+
   render() {
     const {
       scatLocation,
@@ -66,11 +117,9 @@ class EditScat extends React.Component {
       scatNotes,
     } = this.state;
 
-    const editId = this.props.match.params.scatId;
     return (
       <div className="EditScat col-12">
         <h1>Edit Scat Component</h1>
-        <h2>The Scat Id is: {editId}</h2>
         <form className="col-6 offset-3 text-left">
           <div className="form-group">
             <label htmlFor="scat-location">Location</label>
@@ -159,7 +208,7 @@ class EditScat extends React.Component {
             <label className="form-check-label" htmlFor="scat-wasFulfilling">Was it fulfilling?</label>
           </div>
 
-          <button type="submit" className="btn btn-primary" onClick={this.saveScat}>Update</button>
+          <button type="submit" className="btn btn-primary" onClick={this.updateScat}>Update</button>
         </form>
 
       </div>

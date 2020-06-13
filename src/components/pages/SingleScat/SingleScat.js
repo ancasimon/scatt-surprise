@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import scatsData from '../../../helpers/data/scatsData';
 
@@ -27,10 +28,13 @@ class SingleScat extends React.Component {
 
   render() {
     const { scat } = this.state;
+    const { scatId } = this.props.match.params;
+    const editLink = `/edit/${scatId}`;
 
     return (
       <div className="SingleScat" style={{ backgroundColor: scat.color }}>
-        <button class="btn btn-danger" onClick={this.removeScat}>Delete Scat Record</button>
+        <Link className="btn btn-warning" to={editLink}>Edit</Link>
+        <button className="btn btn-danger" onClick={this.removeScat}>Delete Scat Record</button>
         <h4>{scat.location}</h4>
         <h4>Notes: {scat.notes}</h4>
         <p>Shape: {scat.shape}</p>
